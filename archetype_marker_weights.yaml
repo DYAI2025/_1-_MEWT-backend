@@ -1,0 +1,18 @@
+scoring:
+  match_weights:
+    semantic_patterns: 1.0
+    emotion_tone: 0.8
+    drift_trigger: 1.2
+  total_score_formula: |
+    score =
+      (#semantic_hits * 1.0) +
+      (#emotion_hits * 0.8) +
+      (#drift_hits * 1.2)
+  thresholds:
+    low: 1.5
+    medium: 2.5
+    high: 4.0
+  classification:
+    low: "passive archetypic presence"
+    medium: "active archetype in drift field"
+    high: "dominant archetype in resonance"

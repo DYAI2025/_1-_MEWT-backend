@@ -1,0 +1,38 @@
+openapi: 3.1.0
+info:
+  title: Google Drive Transcripts & Profiles Scanner
+  description: Lists and retrieves audio/text files from your Google Drive folder structure (e.g., /Transcripts, /Profiles).
+  version: 1.0.0
+servers:
+  - url: https://www.googleapis.com/drive/v3
+paths:
+  /files:
+    get:
+      operationId: listDriveFiles
+      summary: List audio or transcript files from specific folders.
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: Drive search query (e.g., folder ID or mimeType).
+          schema:
+            type: string
+      responses:
+        '200':
+          description: File list matching query.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  files:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        mimeType:
+                          type: string

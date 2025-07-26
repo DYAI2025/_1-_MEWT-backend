@@ -1,0 +1,25 @@
+archetype_resonance_links:
+  Richter:
+    shadow: "Tyrann"
+    resonance_with: ["Rebell", "Märtyrer"]
+  Rebell:
+    shadow: "Zerstörer"
+    resonance_with: ["Richter", "Liebender"]
+  Liebender:
+    shadow: "Abhängiger"
+    resonance_with: ["Rebell", "Königin", "Saboteur"]
+  Held:
+    shadow: "Überforderter"
+    resonance_with: ["Märtyrer", "Liebender"]
+  Märtyrer:
+    shadow: "Unsichtbarer"
+    resonance_with: ["Held", "Saboteur"]
+  Saboteur:
+    shadow: "Zyniker"
+    resonance_with: ["Märtyrer", "Narr"]
+  Narr:
+    shadow: "Leerer Clown"
+    resonance_with: ["Richter", "Rebell"]
+  König:
+    shadow: "Diktator"
+    resonance_with: ["Saboteur", "Held"]
