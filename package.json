@@ -1,0 +1,25 @@
+{
+  "name": "mewt-backend",
+  "version": "1.0.0",
+  "description": "MEWT Backend - Marker Engine with Emotion Analysis",
+  "main": "api/server_with_emotion_FIXED.js",
+  "type": "module",
+  "scripts": {
+    "start": "node api/server_with_emotion_FIXED.js",
+    "dev": "node api/server_with_emotion_FIXED.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "body-parser": "^1.20.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "emotion-analysis",
+    "marker-engine",
+    "api"
+  ],
+  "author": "DYAI2025",
+  "license": "CC-BY-NC-SA-4.0"
+}
