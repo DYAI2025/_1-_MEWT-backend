@@ -1,0 +1,122 @@
+openapi: 3.0.0
+info:
+  title: MEWT Backend API
+  description: Marker Engine with Emotion Analysis API
+  version: 1.0.0
+  contact:
+    name: DYAI2025
+  license:
+    name: Creative Commons BY-NC-SA 4.0
+
+servers:
+  - url: https://mewt-backend.fly.dev
+    description: Production server
+  - url: http://localhost:8000
+    description: Development server
+
+paths:
+  /emotion:
+    post:
+      summary: Analyze emotion in text
+      description: Analyzes the emotional content of provided text and returns mood and confidence score
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - text
+              properties:
+                text:
+                  type: string
+                  description: Text to analyze for emotional content
+                  example: "Ich bin heute sehr glücklich und freue mich auf den Tag!"
+      responses:
+        '200':
+          description: Successful emotion analysis
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mood:
+                    type: string
+                    description: Detected dominant emotion
+                    enum: [neutral, sadness, joy, anger, fear, surprise, disgust]
+                    example: "joy"
+                  confidence:
+                    type: number
+                    format: float
+                    description: Confidence score for the detected emotion
+                    minimum: 0.0
+                    maximum: 1.0
+                    example: 0.8
+        '400':
+          description: Bad request - missing or invalid text
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Missing 'text' in request body."
+
+  /status:
+    get:
+      summary: Health check endpoint
+      description: Returns server status and current timestamp
+      responses:
+        '200':
+          description: Server is alive
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "alive"
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: "2024-08-04T01:08:00.000Z"
+
+components:
+  schemas:
+    EmotionAnalysisRequest:
+      type: object
+      required:
+        - text
+      properties:
+        text:
+          type: string
+          description: Text to analyze
+
+    EmotionAnalysisResponse:
+      type: object
+      properties:
+        mood:
+          type: string
+          enum: [neutral, sadness, joy, anger, fear, surprise, disgust]
+        confidence:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+
+    StatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
